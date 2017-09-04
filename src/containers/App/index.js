@@ -24,7 +24,13 @@ class App extends Component<any> {
         </Header>
         <GridRow>
           <GridColumn>
-            <SelectionWidget />
+            <SelectionWidget
+              base="BTC"
+              target="USD"
+              price={4352.58}
+              volume={57218.36}
+              change={83.72}
+            />
           </GridColumn>
         </GridRow>
       </Grid>
