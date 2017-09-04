@@ -1,0 +1,10 @@
+.selection-widget {
+  margin-top: 100px;
+}
+
+.selection-widget .ui.segment {
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

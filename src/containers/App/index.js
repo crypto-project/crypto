@@ -1,19 +1,32 @@
 // @flow
 import React, { Component } from "react";
 import SelectionWidget from "../SelectionWidget";
-import { Grid } from "semantic-ui-react";
-
+import {
+  Grid,
+  Header,
+  Icon,
+  GridRow,
+  GridColumn,
+  HeaderSubheader
+} from "semantic-ui-react";
 import "./App.css";
 
-class App extends Component<{}> {
+class App extends Component<any> {
   render() {
     return (
       <Grid container>
-        <Grid.Row>
-          <Grid.Column>
+        <Header as="h2" icon textAlign="center" style={{ marginTop: 20 }}>
+          <Icon name="line chart" style={{ color: " #ffc107" }} />
+          Crypto
+          <HeaderSubheader>
+            Check out latest currency exchange prices!
+          </HeaderSubheader>
+        </Header>
+        <GridRow>
+          <GridColumn>
             <SelectionWidget />
-          </Grid.Column>
-        </Grid.Row>
+          </GridColumn>
+        </GridRow>
       </Grid>
     );
   }
