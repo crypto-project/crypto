@@ -15,7 +15,7 @@ type Props = {|
 |};
 
 type State = {|
-  selectValue: string
+  selectValue: mixed
 |};
 
 class Select extends React.Component<Props, State> {

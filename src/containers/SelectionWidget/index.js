@@ -8,13 +8,13 @@ import "./styles.css";
 const base = [
   { label: "One", value: 1 },
   { label: "Two", value: 2 },
-  { label: "Three", value: 3, disabled: true }
+  { label: "Three", value: 3 }
 ];
 
 const target = [
   { label: "One", value: 1 },
   { label: "Two", value: 2 },
-  { label: "Three", value: 3, disabled: true }
+  { label: "Three", value: 3 }
 ];
 
 const SelectionWidget = () => {
@@ -22,7 +22,7 @@ const SelectionWidget = () => {
     <Grid>
       <GridRow>
         <GridColumn mobile={8}>
-          <Select options={base} initial={1} />
+          <Select options={base} initial={() => {}} />
         </GridColumn>
         <GridColumn mobile={8}>
           <Select options={target} initial={1} />
