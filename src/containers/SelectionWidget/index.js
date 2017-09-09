@@ -1,16 +1,34 @@
 // @flow
 
 import React from "react";
-import { Segment } from "semantic-ui-react";
-import VirtualizedSelect from "react-virtualized-select";
+import { Grid, GridRow, GridColumn } from "semantic-ui-react";
+import Select from "components/Select";
 import "./styles.css";
+
+const base = [
+  { label: "One", value: 1 },
+  { label: "Two", value: 2 },
+  { label: "Three", value: 3, disabled: true }
+];
+
+const target = [
+  { label: "One", value: 1 },
+  { label: "Two", value: 2 },
+  { label: "Three", value: 3, disabled: true }
+];
 
 const SelectionWidget = () => {
   return (
-    <div className="selection-widget">
-      <VirtualizedSelect />
-      <VirtualizedSelect />
-    </div>
+    <Grid>
+      <GridRow>
+        <GridColumn mobile={8}>
+          <Select options={base} initial={1} />
+        </GridColumn>
+        <GridColumn mobile={8}>
+          <Select options={target} initial={1} />
+        </GridColumn>
+      </GridRow>
+    </Grid>
   );
 };
 

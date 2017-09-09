@@ -1,6 +1,7 @@
 // @flow
 import React, { Component } from "react";
 import DisplayWidget from "../DisplayWidget";
+import SelectionWidget from "../SelectionWidget";
 import {
   Grid,
   Header,
@@ -14,7 +15,7 @@ import "./App.css";
 class App extends Component<any> {
   render() {
     return (
-      <Grid container>
+      <Grid container className="app">
         <Header as="h2" icon textAlign="center" style={{ marginTop: 20 }}>
           <Icon name="line chart" style={{ color: " #ffc107" }} />
           Crypto
@@ -31,6 +32,11 @@ class App extends Component<any> {
               volume={57218.36}
               change={83.72}
             />
+          </GridColumn>
+        </GridRow>
+        <GridRow centered>
+          <GridColumn width={6}>
+            <SelectionWidget />
           </GridColumn>
         </GridRow>
       </Grid>

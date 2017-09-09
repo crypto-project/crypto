@@ -1,11 +1,11 @@
 import React from "react";
 import { shallow } from "enzyme";
 import SelectionWidget from "containers/SelectionWidget";
-import { Segment } from "semantic-ui-react";
+import Select from "components/Select";
 
-describe("I want to see currency data within the Display widget", () => {
-  it("renders a panel", () => {
+describe("I want to see a drop down box with currencies", () => {
+  it("renders a select component", () => {
     const wrapper = shallow(<SelectionWidget />);
-    expect(wrapper.find(Segment).exists()).toBe(true);
+    expect(wrapper.find(Select).length).toBe(2);
   });
 });
