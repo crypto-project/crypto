@@ -17,9 +17,9 @@ const SelectionWidget = ({ price, volume, change, base, target }: Props) => {
     <div className="selection-widget">
       <Segment>
         <div className="currency-data">
-          <div className="x-price">{price}</div>
-          <div className="x-volume">{volume}</div>
-          <div className="x-change">{change}</div>
+          <div className="x-price">{price.toFixed(2)}</div>
+          <div className="x-volume">{volume.toFixed(2)}</div>
+          <div className="x-change">{change.toFixed(2)}</div>
           <div className="x-base">{base}</div>
           <div className="x-target">{target}</div>
         </div>

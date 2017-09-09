@@ -1,0 +1,3 @@
+tip
+
+use emacs with spacemacs 
