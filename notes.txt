@@ -1,3 +1,4 @@
 tip
 
 use emacs with spacemacs 
+git merge --ff-only temp // merge branch with master 
