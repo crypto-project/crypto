@@ -1,6 +1,6 @@
 // @flow
 import React, { Component } from "react";
-import SelectionWidget from "../SelectionWidget";
+import DisplayWidget from "../DisplayWidget";
 import {
   Grid,
   Header,
@@ -24,7 +24,7 @@ class App extends Component<any> {
         </Header>
         <GridRow>
           <GridColumn>
-            <SelectionWidget
+            <DisplayWidget
               base="BTC"
               target="USD"
               price={4352.58}

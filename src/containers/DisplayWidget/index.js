@@ -12,9 +12,9 @@ type Props = {|
   target: string
 |};
 
-const SelectionWidget = ({ price, volume, change, base, target }: Props) => {
+const DisplayWidget = ({ price, volume, change, base, target }: Props) => {
   return (
-    <div className="selection-widget">
+    <div className="display-widget">
       <Segment>
         <div className="currency-data">
           <div className="x-price">{price.toFixed(2)}</div>
@@ -28,4 +28,4 @@ const SelectionWidget = ({ price, volume, change, base, target }: Props) => {
   );
 };
 
-export default SelectionWidget;
+export default DisplayWidget;

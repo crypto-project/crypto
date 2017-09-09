@@ -1,12 +1,12 @@
 import React from "react";
 import { shallow } from "enzyme";
-import SelectionWidget from "containers/SelectionWidget";
+import DisplayWidget from "containers/DisplayWidget";
 import { Segment } from "semantic-ui-react";
 
-describe("I want to see currency data within the selection widget", () => {
+describe("I want to see currency data within the Display widget", () => {
   it("renders a panel", () => {
     const wrapper = shallow(
-      <SelectionWidget
+      <DisplayWidget
         base="BTC"
         target="USD"
         price={4352.582}
@@ -25,7 +25,7 @@ describe("I want to see currency data within the selection widget", () => {
     const change = 83.72;
 
     const wrapper = shallow(
-      <SelectionWidget
+      <DisplayWidget
         base={base}
         target={target}
         price={price}

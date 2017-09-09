@@ -1,8 +1,8 @@
-.selection-widget {
+.display-widget {
   margin-top: 100px;
 }
 
-.selection-widget .ui.segment {
+.display-widget .ui.segment {
   height: 300px;
   display: flex;
   justify-content: center;
