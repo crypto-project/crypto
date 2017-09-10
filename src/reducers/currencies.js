@@ -1,10 +1,16 @@
 // @flow
+import { REQUEST_EXCHANGE_RATE } from "actions";
+import type { Action } from "../types";
 
-type State = {};
-type Action = void;
-
-const initial = {};
+type State = [string | null, string | null];
+const initial = [null, null];
 
 export default (state: State = initial, action: Action) => {
-  return state;
+  switch (action.type) {
+    case REQUEST_EXCHANGE_RATE:
+      const { base, target } = action.payload;
+      return [base, target];
+    default:
+      return state;
+  }
 };
