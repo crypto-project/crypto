@@ -20,6 +20,8 @@ export type Action =
       type: "FETCH_EXCHANGE_RATE_COMPLETE",
       payload:
         | {|
+            base: string,
+            target: string,
             data: ExchangeRateData
           |}
         | Error,

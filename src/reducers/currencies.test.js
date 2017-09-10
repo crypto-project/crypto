@@ -1,5 +1,5 @@
 import reducer from "./currencies";
-import { requestExchangeRate, fetchExchangeRateComplete } from "actions";
+import { requestExchangeRate } from "actions";
 
 describe("reducer", () => {
   test("handles REQUEST_EXCHANGE_RATE action", () => {
@@ -7,7 +7,7 @@ describe("reducer", () => {
     const target = "b";
     const action = requestExchangeRate(base, target);
     const initialState = [null, null];
-    const result = reducer(initialState, action)
+    const result = reducer(initialState, action);
     expect(result).toEqual([base, target]);
   });
 });
