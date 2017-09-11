@@ -2,7 +2,7 @@ import reducer from "./exchangeRates";
 import { requestExchangeRate, fetchExchangeRateComplete } from "actions";
 
 describe("reducer", () => {
-  describe("handle REQUEST_EXCHNGE_RATE action", () => {
+  describe("handle REQUEST_EXCHANGE_RATE action", () => {
     test("changes loading state", () => {
       const base = "usd";
       const target = "btc";
@@ -23,7 +23,7 @@ describe("reducer", () => {
         }
       });
     });
-    test.only("add new currecies", () => {
+    test("add new currencies", () => {
       const base = "a";
       const target = "b";
       const action = requestExchangeRate(base, target);
@@ -50,5 +50,51 @@ describe("reducer", () => {
     });
   });
 
-  xtest("handles FETCH_EXCHANGE_RATE_COMPLETE action", () => {});
+  describe("handles FETCH_EXCHANGE_RATE_COMPLETE action", () => {
+    test("changes loading state", () => {
+      const base = "usd";
+      const target = "btc";
+      const data = { foo: "bar" };
+      const action = fetchExchangeRateComplete({ base, target, data });
+      const initialState = {
+        "usd-btc": {
+          isLoading: true,
+          isError: false,
+          data: {}
+        }
+      };
+      const result = reducer(initialState, action);
+
+      expect(result).toEqual({
+        "usd-btc": {
+          isLoading: false,
+          isError: false,
+          data,
+        }
+      });
+    });
+
+    test("changes error state", () => {
+      const base = "usd";
+      const target = "btc";
+      const action = fetchExchangeRateComplete({ base, target, data: undefined });
+      const initialState = {
+        "usd-btc": {
+          isLoading: false,
+          isError: false,
+          data: {}
+        }
+      };
+      const result = reducer(initialState, action);
+
+      expect(result).toEqual({
+        "usd-btc": {
+          isLoading: false,
+          isError: true,
+          data: {},
+        }
+      });
+    });
+  });
 });
+

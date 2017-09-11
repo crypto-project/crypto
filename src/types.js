@@ -24,6 +24,9 @@ export type Action =
             target: string,
             data: ExchangeRateData
           |}
-        | Error,
-      error?: true
+        | {|
+            base: string,
+            target: string,
+            error: Error
+          |}
     |};

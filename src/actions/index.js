@@ -1,9 +1,13 @@
 // @flow
-import type { Action, ExchangeRateData } from "../types";
 import { createAction } from "redux-actions";
+import type { Action, ExchangeRateData } from "../types";
 
 type FetchCompleteActionCreator = (
-  dateOrError: ExchangeRateData | Error
+  payload: {|
+    base: string,
+    target: string,
+    data: ExchangeRateData,
+  |},
 ) => Action;
 
 export const REQUEST_EXCHANGE_RATE = "REQUEST_EXCHANGE_RATE";
@@ -14,6 +18,24 @@ export const requestExchangeRate = (base: string, target: string): Action => ({
   payload: { base, target }
 });
 
-export const fetchExchangeRateComplete: FetchCompleteActionCreator = createAction(
-  FETCH_EXCHANGE_RATE_COMPLETE
-);
+export const fetchExchangeRateComplete: FetchCompleteActionCreator = ({ data, base, target }) => {
+  if (!data) {
+    return {
+      type: FETCH_EXCHANGE_RATE_COMPLETE,
+      payload: {
+        base,
+        target,
+        error: new Error('Foo'),
+      },
+    }
+  }
+
+  return {
+    type: FETCH_EXCHANGE_RATE_COMPLETE,
+    payload: {
+      base,
+      target,
+      data,
+    },
+  }
+}

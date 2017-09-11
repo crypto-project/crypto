@@ -1,5 +1,5 @@
 // @flow
-import { REQUEST_EXCHANGE_RATE } from "actions";
+import { REQUEST_EXCHANGE_RATE, FETCH_EXCHANGE_RATE_COMPLETE } from "actions";
 import type { Action, ExchangeRateData } from "../types";
 
 type State = {
@@ -13,9 +13,11 @@ const initial = {};
 
 export default (state: State = initial, action: Action) => {
   switch (action.type) {
-    case REQUEST_EXCHANGE_RATE:
+    case REQUEST_EXCHANGE_RATE: {
       const { base, target } = action.payload;
+
       if (base === null || target === null) return state;
+
       return {
         ...state,
         [`${base}-${target}`]: {
@@ -24,6 +26,34 @@ export default (state: State = initial, action: Action) => {
           data: {}
         }
       };
+    }
+
+    case FETCH_EXCHANGE_RATE_COMPLETE: {
+      const { base, target } = action.payload;
+
+      if (action.payload.error) {
+        return {
+          ...state,
+          [`${base}-${target}`]: {
+            isLoading: false,
+            isError: true,
+            data: {}
+          }
+        }
+      }
+
+      const { data } = action.payload;
+
+      return {
+        ...state,
+        [`${base}-${target}`]: {
+          isLoading: false,
+          isError: false,
+          data,
+        }
+      };
+    }
+
     default:
       return state;
   }
