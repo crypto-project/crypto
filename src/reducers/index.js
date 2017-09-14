@@ -1,10 +1,9 @@
 // @flow
+import { combineReducers } from 'redux';
+import exchangeRates from './exchangeRates';
+import currencies from './currencies';
 
-type State = {};
-type Action = void;
-
-const initial = {};
-
-export default (state: State = initial, action: Action) => {
-  return state;
-};
+export default combineReducers({
+  exchangeRates,
+  currencies,
+});

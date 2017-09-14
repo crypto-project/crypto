@@ -10,7 +10,7 @@ export type ExchangeRateData = {
 
 export type Action =
   | {|
-      type: "REQUEST_EXCHANGE_RATE",
+      type: "EXCHANGE_RATE_REQUESTED",
       payload: {|
         base: string | null,
         target: string | null

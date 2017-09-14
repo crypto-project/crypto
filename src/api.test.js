@@ -16,6 +16,7 @@ test("tests it makes a request and gets data", async () => {
   });
 
   const result = await api.getCurrency("btc", "usd");
+
   expect(result).toEqual({
     base: "BTC",
     target: "USD",

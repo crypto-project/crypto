@@ -1,5 +1,5 @@
 // @flow
-import { REQUEST_EXCHANGE_RATE, FETCH_EXCHANGE_RATE_COMPLETE } from "actions";
+import { EXCHANGE_RATE_REQUESTED, FETCH_EXCHANGE_RATE_COMPLETE } from "actions";
 import type { Action, ExchangeRateData } from "../types";
 
 type State = {
@@ -13,7 +13,7 @@ const initial = {};
 
 export default (state: State = initial, action: Action) => {
   switch (action.type) {
-    case REQUEST_EXCHANGE_RATE: {
+    case EXCHANGE_RATE_REQUESTED: {
       const { base, target } = action.payload;
 
       if (base === null || target === null) return state;

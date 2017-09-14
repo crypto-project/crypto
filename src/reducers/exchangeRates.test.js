@@ -1,12 +1,12 @@
 import reducer from "./exchangeRates";
-import { requestExchangeRate, fetchExchangeRateComplete } from "actions";
+import { exchangeRateRequested, fetchExchangeRateComplete } from "actions";
 
 describe("reducer", () => {
-  describe("handle REQUEST_EXCHANGE_RATE action", () => {
+  describe("handle EXCHANGE_RATE_REQUESTED action", () => {
     test("changes loading state", () => {
       const base = "usd";
       const target = "btc";
-      const action = requestExchangeRate(base, target);
+      const action = exchangeRateRequested(base, target);
       const initialState = {
         "usd-btc": {
           isLoading: false,
@@ -26,7 +26,7 @@ describe("reducer", () => {
     test("add new currencies", () => {
       const base = "a";
       const target = "b";
-      const action = requestExchangeRate(base, target);
+      const action = exchangeRateRequested(base, target);
       const initialState = {
         "usd-btc": {
           isLoading: false,
@@ -77,7 +77,7 @@ describe("reducer", () => {
     test("changes error state", () => {
       const base = "usd";
       const target = "btc";
-      const action = fetchExchangeRateComplete({ base, target, data: undefined });
+      const action = fetchExchangeRateComplete({ base, target, data: new Error('foo') });
       const initialState = {
         "usd-btc": {
           isLoading: false,

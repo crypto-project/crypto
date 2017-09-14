@@ -1,7 +1,7 @@
 import reducers from "./index";
 
-test("reducers", () => {
+test('reducers', () => {
   let state;
   state = reducers(undefined, {});
-  expect(state).toEqual({});
+  expect(state).toEqual({exchangeRates:{},currencies:[null,null]});
 });

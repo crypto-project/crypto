@@ -1,33 +1,62 @@
-import {fetchExchangeRateComplete, FETCH_EXCHANGE_RATE_COMPLETE} from './index'
+import {
+  exchangeRateRequested,
+  fetchExchangeRateComplete,
+  FETCH_EXCHANGE_RATE_COMPLETE,
+  requestExchangeRate
+} from "./index";
 
-test('fetchExchangeRateComplete', () => {
-  const base = 'usd';
-  const target = 'btc';
+test("fetchExchangeRateComplete success", () => {
+  const base = "usd";
+  const target = "btc";
+  const data = { foo: "bar" };
+  const action = fetchExchangeRateComplete({ data, base, target });
+
+  expect(action).toEqual({
+    type: FETCH_EXCHANGE_RATE_COMPLETE,
+    payload: {
+      base,
+      target,
+      data
+    }
+  });
+});
+
+test("fetchExchangeRateComplete error", () => {
+  const base = "usd";
+  const target = "btc";
+  const data = new Error("Foo");
+  const action = fetchExchangeRateComplete({ data, base, target });
+
+  expect(action).toEqual({
+    type: FETCH_EXCHANGE_RATE_COMPLETE,
+    payload: {
+      base,
+      target,
+      error: data
+    }
+  });
+});
+
+test("request exchange rate flow", async () => {
   const data = { foo: 'bar' };
-  const action= fetchExchangeRateComplete({ data, base, target })
+  const api = {
+    getCurrency: jest.fn(() => Promise.resolve(data))
+  };
+  const base = "usd";
+  const target = "btc";
+  const dispatch = jest.fn();
+  const thunk = requestExchangeRate(base, target);
+  const result = thunk(dispatch, undefined, api); // Promise
 
-  expect(action).toEqual({
-    type: FETCH_EXCHANGE_RATE_COMPLETE,
-    payload: {
-      base,
-      target,
-      data,
-    },
-  })
-})
+  await result.then((result) => {
+    expect(dispatch).toHaveBeenCalledTimes(2);
 
-test('fetchExchangeRateComplete', () => {
-  const base = 'usd';
-  const target = 'btc';
-  const data = undefined;
-  const action= fetchExchangeRateComplete({ data, base, target })
+    expect(dispatch).toHaveBeenCalledWith(
+      exchangeRateRequested(base, target),
+    )
 
-  expect(action).toEqual({
-    type: FETCH_EXCHANGE_RATE_COMPLETE,
-    payload: {
-      base,
-      target,
-      error: new Error('Foo'),
-    },
-  })
-})
+    expect(dispatch).toHaveBeenCalledWith(
+      fetchExchangeRateComplete({ base, target, data })
+    )
+  });
+});
