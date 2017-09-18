@@ -1,9 +1,12 @@
 // @flow
-import { combineReducers } from 'redux';
-import exchangeRates from './exchangeRates';
-import currencies from './currencies';
+import { combineReducers } from "redux";
+import exchangeRates from "./exchangeRates";
+import currencies from "./currencies";
 
-export default combineReducers({
+const reducers = {
   exchangeRates,
-  currencies,
-});
+  currencies
+};
+
+export type Reducers = typeof reducers;
+export default combineReducers(reducers);

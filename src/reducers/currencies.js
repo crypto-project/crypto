@@ -1,6 +1,6 @@
 // @flow
 import { EXCHANGE_RATE_REQUESTED } from "actions";
-import type { Action } from "../types";
+import type { Action, State as GlobalState } from "../types";
 
 type State = [string | null, string | null];
 const initial = [null, null];
@@ -13,4 +13,12 @@ export default (state: State = initial, action: Action) => {
     default:
       return state;
   }
+};
+
+export const getBaseCurrency = (state: GlobalState) => {
+  return state.currencies[0];
+};
+
+export const getTargetCurrency = (state: GlobalState) => {
+  return state.currencies[1];
 };

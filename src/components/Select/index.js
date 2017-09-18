@@ -11,7 +11,9 @@ type Option = {|
 
 type Props = {|
   initial: mixed,
-  options: Array<Option>
+  options: Array<Option>,
+  valueKey: string,
+  labelKey: string
 |};
 
 type State = {|
@@ -26,6 +28,8 @@ class Select extends React.Component<Props, State> {
   render() {
     return (
       <BaseSelect
+        labelKey={this.props.labelKey}
+        valueKey={this.props.valueKey}
         className="x-select"
         value={this.state.selectValue}
         options={this.props.options}

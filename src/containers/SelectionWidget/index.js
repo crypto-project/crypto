@@ -4,28 +4,27 @@ import React from "react";
 import { Grid, GridRow, GridColumn } from "semantic-ui-react";
 import Select from "components/Select";
 import "./styles.css";
-
-const base = [
-  { label: "One", value: 1 },
-  { label: "Two", value: 2 },
-  { label: "Three", value: 3 }
-];
-
-const target = [
-  { label: "One", value: 1 },
-  { label: "Two", value: 2 },
-  { label: "Three", value: 3 }
-];
+import options from "./data/options";
 
 const SelectionWidget = () => {
   return (
     <Grid>
       <GridRow>
         <GridColumn mobile={8}>
-          <Select options={base} initial={() => {}} />
+          <Select
+            labelKey="name"
+            valueKey="code"
+            options={options}
+            initial={"BTC"}
+          />
         </GridColumn>
         <GridColumn mobile={8}>
-          <Select options={target} initial={1} />
+          <Select
+            labelKey="name"
+            valueKey="code"
+            options={options}
+            initial={"USD"}
+          />
         </GridColumn>
       </GridRow>
     </Grid>

@@ -1,5 +1,9 @@
 // @flow
 
+import type { Reducers } from "./reducers";
+import type { Store as ReduxStore, Dispatch as ReduxDispatch } from "redux";
+import api from "./api";
+
 export type ExchangeRateData = {
   base: string,
   target: string,
@@ -30,3 +34,14 @@ export type Action =
             error: Error
           |}
     |};
+
+type $ExtractFunctionReturn = <V>(v: (...args: any) => V) => V;
+export type State = $ObjMap<Reducers, $ExtractFunctionReturn>;
+
+export type Store = ReduxStore<State, Action>;
+export type GetState = () => State;
+export type Dispatch = ReduxDispatch<Action> & Thunk<Action>;
+
+export type Thunk<A> = ((Dispatch, GetState) => Promise<void> | void) => A;
+
+export type Api = typeof api;
